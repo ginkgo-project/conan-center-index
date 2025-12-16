@@ -86,9 +86,9 @@ class GinkgoConan(ConanFile):
     def build_requirements(self):
         if Version(self.version) >= "1.7.0":
             if self.options.cuda:
-                self.tool_requires("cmake/[>=3.18 <4]")
+                self.tool_requires("cmake/[>=3.18]")
             else:
-                self.tool_requires("cmake/[>=3.16 <4]")
+                self.tool_requires("cmake/[>=3.16]")
 
     def source(self):
         get(self, **self.conan_data["sources"][self.version], strip_root=True)
@@ -208,7 +208,7 @@ class GinkgoConan(ConanFile):
             self.cpp_info.components["ginkgo_hip"].requires += ["ginkgo_device"]
             self.cpp_info.components["ginkgo_cuda"].requires += ["ginkgo_device"]
             self.cpp_info.components["ginkgo_dpcpp"].requires += ["ginkgo_device"]
-        
+
         if has_config_library:
             self.cpp_info.components["ginkgo_core"].requires += ["ginkgo_config"]
 
